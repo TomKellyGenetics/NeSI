@@ -119,3 +119,4 @@ In both of these cases we have used the vectorisation of R to pass a function to
     ```
 
 Note that you **do not** have to specify how many cores to use when creating the cluster in R, this defaults to the maximum number of cores available to your NeSI job (i.e., the "cpus-per-task" you requested in the slurm file).
+
