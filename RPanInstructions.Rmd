@@ -67,3 +67,55 @@ output:
         #SBATCH --ntasks=1
 
         ```
+
+9.  The script you use will also need to be modified to run R on multiple cores. We recommend using the R module demonstrated on Pan, which uses the `snow` packages and it's `Rmpi` dependancy to take advantage of the the MPI (message passing interface supported by NeSI). For instance, with the `simplefunction.R` script, make the following changes to load the `snow` package and run the function on every core:
+
+First modify the process to divide independent steps so they can be allocated to separate cores. For example:
+
+a) Generate each column of the matrix as a random vector (data intensive steps are particularly well suited to this).
+
+b) Run multiple calculations at the same time, e.g., 2^i below
+
+    ```
+    #!/usr/bin/env Rscript
+    args = commandArgs(trailingOnly=TRUE)
+
+    simplefunction <- function(n){
+    n <- as.numeric(n)
+    a <- lapply(as.list(1:n), function(i) matrix(data = rnorm(n), nrow=1, ncol = n)) # generate each column on a separate core
+    b <- do.call(rbind, a) #combine output vectors into a matrix 
+    save(b, file="simple.RData)
+    c <- sapply(1:n, function(ii) 2^ii) #do separate calculations
+    return(c)
+    }
+    
+    x <- simplefunction(args$1)
+    print(x)
+    ```
+
+In both of these cases we have used the vectorisation of R to pass a function to multiple arguments in a loop. These "apply" functions have parallel counterparts in the `snow` package.
+
+    ```
+    #!/usr/bin/env Rscript
+    args = commandArgs(trailingOnly=TRUE)
+    library("snow") #load package
+
+    simplefunction <- function(n){
+    n <- as.numeric(n)
+    
+    cl<-makeMPIcluster(outfile="") #First create a cluster to send functions to (without specifying cores)
+    clusterExport(cl=cl, list=ls()) #Send environment variables to end node
+    
+    a <- parLapply(cl, as.list(1:n), function(i) matrix(data = rnorm(n), nrow=1, ncol = n)) #invoke the parallel version of lapply() and run the function on separate inputs simultaneously, the output here returns to the master node environment
+    b <- do.call(rbind, a)
+    save(b, file="simple.RData)
+    c <- parSapply(cl, 1:n, function(ii) 2^ii) #we can use this cluster again with sapply in a similar manner
+    stopCluster(cl) #remember to stop a cluster in R once you are done
+    return(c)
+    }
+    
+    x <- simplefunction(args$1)
+    print(x)
+    ```
+
+Note that you **do not** have to specify how many cores to use when creating the cluster in R, this defaults to the maximum number of cores available to your NeSI job (i.e., the "cpus-per-task" you requested in the slurm file).
