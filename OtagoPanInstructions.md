@@ -74,7 +74,7 @@
     `arrayout_1.txt` ... `arrayout_10.txt`: with contents "test1" ... "test10"
     `arrayerr_1.txt` ... `arrayerr_10.txt`: empty files with zero bytes
 
-23.  For your own work, replace the last line of the files ending `.sl` with the work you want to do (always preceded by `srun`). If you're using Matlab, see also the separate file [MatlabPanInstructions](https://rawgit.com/dannybaillie/NeSI/master/MatlabPanInstructions.html). You will need to send your code and input data to Pan and bring the results back to your local machine. You can do this on your local machine with:
+23.  For your own work, replace the last line of the files ending `.sl` with the work you want to do (always preceded by `srun`). If you're using R, see also the separate file [RPanInstructions](https://rawgit.com/dannybaillie/NeSI/tree/R-user/RPanInstructions.html). You will need to send your code and input data to Pan and bring the results back to your local machine. You can do this on your local machine with:
 
     To Pan: `scp pathtofiles pan:destinationpath`
     From Pan: `scp pan:pathtofiles destinationpath`

@@ -1,6 +1,6 @@
 # How to get your R work done on NeSI's Pan cluster
 
-1.  Prerequisites: Work through the companion document [OtagoPanInstructions](https://rawgit.com/dannybaillie/NeSI/master/OtagoPanInstructions.html) first.
+1.  Prerequisites: Work through the companion document [OtagoPanInstructions](https://rawgit.com/dannybaillie/NeSI/tree/R-user/OtagoPanInstructions.html) first.
 2.  Type `nano simplefunction.R` and Copy and Paste the following (it makes a random matrix and displays the result of a calculation), write out and exit:
 
     ```
@@ -114,3 +114,4 @@ In both of these cases we have used the vectorisation of R to pass a function to
     ```
 
 Note that you **do not** have to specify how many cores to use when creating the cluster in R, this defaults to the maximum number of cores available to your NeSI job (i.e., the "cpus-per-task" you requested in the slurm file).
+

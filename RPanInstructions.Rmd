@@ -5,7 +5,7 @@ output:
 ---
 # How to get your R work done on NeSI's Pan cluster
 
-1.  Prerequisites: Work through the companion document [OtagoPanInstructions](https://rawgit.com/dannybaillie/NeSI/master/OtagoPanInstructions.html) first.
+1.  Prerequisites: Work through the companion document [OtagoPanInstructions](https://rawgit.com/dannybaillie/NeSI/tree/R-user/OtagoPanInstructions.html) first.
 2.  Type `nano simplefunction.R` and Copy and Paste the following (it makes a random matrix and displays the result of a calculation), write out and exit:
 
     ```
