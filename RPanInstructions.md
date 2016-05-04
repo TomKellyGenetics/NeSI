@@ -1,8 +1,3 @@
----
-output: 
-  html_document: 
-    keep_md: yes
----
 # How to get your R work done on NeSI's Pan cluster
 
 1.  Prerequisites: Work through the companion document [OtagoPanInstructions](https://rawgit.com/dannybaillie/NeSI/master/OtagoPanInstructions.html) first.
