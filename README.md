@@ -4,6 +4,6 @@ For R instructions use this guide. Select `Branch: master` above for an equivale
 
 Either use the .txt instructions or click on:
 
-https://rawgit.com/dannybaillie/NeSI/master/OtagoPanInstructions.html
-https://rawgit.com/dannybaillie/NeSI/master/MatlabPanInstructions.html
+https://rawgit.com/dannybaillie/NeSI/R-user/OtagoPanInstructions.html
+https://rawgit.com/dannybaillie/NeSI/R-user/MatlabPanInstructions.html
 
